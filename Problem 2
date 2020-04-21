@@ -1,0 +1,26 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.pyplot import plot,show
+def f(y,t):
+    return ((y/t)-(y/t)**2)
+h=0.01
+n=101
+t=np.linspace(1,2,n)
+w=np.zeros(n, dtype=float)
+w[0]=1
+for i in range(0,n-1):
+    w[i+1]=w[i]+h*f(w[i],t[i])
+print(w)
+y_g=np.zeros(n, dtype=float)
+for i in range(0,n):
+    y_g[i]=t[i]/(1+np.log(t[i])) 
+print(y_g)   
+print(t)
+plt.plot(t,w, color='red')
+plt.plot(t,y_g, color='green', label='Analytical solution')
+E=y_g-w
+E_tot=sum(E)
+print("total absolute error= ", E_tot)
+R=(y_g-w)/y_g
+R_tot=sum(R)
+print("total relative error= ", R_tot)
