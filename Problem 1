@@ -1,0 +1,26 @@
+PART 1
+import numpy as np
+import matplotlib.pyplot as plt
+h=0.01
+n=101
+t=np.linspace(0,1,n)
+w=np.zeros(n, dtype=float)
+w[0]=np.exp(1)
+y_s=np.zeros(n, dtype=float)
+for i in range(0,n-1):
+    w[i+1]= w[i]/(1+h*9)
+plt.plot(t,w)  
+for i in range(0,n-1):
+    y_s[i]= np.exp(1-9*t[i])
+plt.plot(t,y_s,color='green')
+PART 2
+import numpy as np
+import matplotlib.pyplot as plt
+h=0.01
+n=101
+t=np.linspace(0,1,n)
+w=np.zeros(n)
+w[0]=1/3
+for i in range(0,n-2):
+    w[i+1]= t[i+1]- (1/(40*h))*(1-np.sqrt(1-80*h*(t[i+1]-w[i])+ t[i+1]*160*h**2))
+plt.plot(t,w)  
