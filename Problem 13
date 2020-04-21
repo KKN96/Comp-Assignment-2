@@ -1,0 +1,23 @@
+import numpy as np
+import matplotlib.pyplot as plt
+def f(z,y,t):
+    return t*np.log(t)+ 2*z/t - 2*y/(t**2)
+h=0.001
+n=1001
+t=np.linspace(1,2,n)
+w=np.zeros(n, dtype=float)
+z=np.zeros(n, dtype=float)
+z[0]=0
+w[0]=1
+for i in range(0,n-1):
+    z[i+1]=z[i]+h*f(z[i],w[i],t[i])
+    w[i+1]= w[i]+h*z[i]
+print(w)
+print(z)
+y_g=np.zeros(n, dtype=float)
+for i in range(0,n):
+    y_g[i]=7*t[i]/4 + 0.5*np.log(t[i])*t[i]**3 - 0.75*t[i]**3
+print(y_g)   
+print(t)
+plt.plot(t,w)
+plt.plot(t,y_g, color='green', label='Analytical solution')
