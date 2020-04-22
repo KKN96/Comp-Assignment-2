@@ -1,0 +1,19 @@
+import numpy as np
+import matplotlib.pyplot as plt
+def f(x,y,z):
+    return np.array([z, 2*z- y + x*np.exp(x)-x])
+h=0.01
+n=101
+x=np.linspace(0,1,n)
+w=np.zeros(n, dtype=float)
+z=np.zeros(n, dtype=float)
+w[0]=0
+z[0]=0
+for i in range(0,n-1):
+    k1=h*f(x[i],w[i],z[i])
+    k2=h*f(x[i]+h/2,w[i]+k1[0]/2, z[i]+k1[1]/2 )
+    k3=h*f(x[i]+h/2,w[i]+k2[0]/2, z[i]+k2[1]/2)
+    k4=h*f(x[i]+h,w[i]+k3[0], z[i]+k3[1])
+    w[i+1]= w[i]+ (k1[0]+2*k2[0]+2*k3[0]+k4[0])*(1/6) 
+    z[i+1]= z[i]+ (k1[1]+2*k2[1]+2*k3[1]+k4[1])*(1/6) 
+plt.plot(x,w)
