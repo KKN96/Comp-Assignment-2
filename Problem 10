@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 def f(x,y):
     return 1/((y-x*y)**2 + x**2)
-h=0.001
+h=0.01
 n=101
 x=np.linspace(0,1,n)
 y=np.zeros(n, dtype=float)
